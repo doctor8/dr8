@@ -1,0 +1,144 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>LPS Login</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link href="//db.onlinewebfonts.com/c/d66fa62dabed66f2226a1b2d17da0579?family=Showcard+Gothic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500&display=swap" rel="stylesheet">
+    <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .one-txt {
+            color: # !important;
+        }
+
+        .one-btn {
+            background: #036159 !important;
+            border: solid 1px #036159;
+        }
+
+        .two-txt {
+            color: #D79040 !important;
+        }
+
+        .two-btn {
+            background: #D79040 !important;
+        }
+
+        .login-wrapper .loginbox .login-left {
+            background: linear-gradient(180deg, #036159, #D79040);
+        }
+
+        .cfont {
+            font-family: 'Oxanium', cursive;
+            color: #036159;
+            color: white;
+            font-size: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper login-body">
+        <div class="login-wrapper">
+            <div class="container">
+                <div class="loginbox">
+                    <div class="login-left">
+                        <!--<img class="img-fluid" src="assets/img/logo-white.png" alt="Logo">-->
+                        <h1 class='cfont'>LOGIN</h1>
+                    </div>
+                    <div class="login-right">
+                        <div class="login-right-wrap">
+                            <h1>LPS Login</h1>
+                            <p class="account-subtitle">Access to our dashboard</p>
+
+                            <!-- Form -->
+                            <form action="process-login.php" method="POST">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" id="txtUsername" placeholder="User ID" required name="username">
+                                    <span style="color:red" hidden id="valUsername">Please Enter Username</span>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="password" id="txtPassword" placeholder="Password" required name="password">
+                                    <span style="color:red" hidden id="valPassword">Please Enter Password</span>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block one-btn" id="btnLogin" type="button">Login</button>
+                                </div>
+                            </form>
+                            <!-- /Form -->
+                            <!--<div class="text-center forgotpass"><a href="forgot-password.html">Forgot Password?</a></div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Main Wrapper -->
+    <!-- jQuery -->
+    <script src="~/assets/js/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/assets/js/script.js"></script>
+
+</body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/template/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Jul 2020 05:06:08 GMT -->
+</html>
+<script>
+    $(document).ready(function () {
+        $("#btnLogin").on('click', function () {
+
+            $.ajax({
+                url: "@Url.Action("GetAllRegistrationDetailsForSingleUser", "Admin")",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    var i = 0;
+                    if ($("#txtUsername").val() == "") {
+                        i = i + 1;
+                        $("#valUsername").removeAttr('hidden');
+                    }
+                    else {
+                        $("#valUsername").hide();
+                    }
+                    if ($("#txtPassword").val() == "") {
+                        i = i + 1;
+                        $("#valPassword").removeAttr('hidden');
+                    }
+                    else {
+                        $("#valPassword").hide();
+                    }
+                    if ($("#txtUsername").val() == "logicpro" && $("#txtPassword").val() == "logicpro") {
+                        window.location.href='@Url.Action("Doctor", "Admin")'
+
+                    }
+                    else {
+                        alert("Login Failed");
+                    }
+                }
+            })
+        })
+    })
+</script>

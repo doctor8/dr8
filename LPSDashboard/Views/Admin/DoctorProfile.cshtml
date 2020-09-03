@@ -1,0 +1,272 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Doctor Profile</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Feathericon CSS -->
+    <link rel="stylesheet" href="~/assets/css/feathericon.min.css">
+
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" href="~/assets/plugins/datatables/datatables.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/assets/css/style.css">
+
+    <style>
+        @@import url("//db.onlinewebfonts.com/c/d66fa62dabed66f2226a1b2d17da0579?family=Showcard+Gothic");
+        @@import url("//fengyuanchen.github.io/datepicker/css/datepicker.css");
+
+        .cfont {
+            font-family: 'Showcard Gothic',cursive;
+            color: #036159;
+        }
+
+        .page-wrapper {
+            margin-left: 0px;
+        }
+    </style>
+    <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        <!-- Header -->
+        <div class="header">
+
+            <!-- Logo -->
+            <div class="header-left">
+                <a href="index.php" class="logo">
+                    <!--<img src="assets/img/logo.png" alt="Logo">-->
+                    <h1 class='cfont'>LogicProSol</h1>
+                </a>
+            </div>
+
+            <!-- Header Right Menu -->
+            <ul class="nav user-menu">
+                <!-- User Menu -->
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <span class="user-img"><img class="rounded-circle" src="~/cdn/logo.jpg" width="31" alt="Admin"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img src="~/cdn/logo.jpg" alt="User Image" class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                                <h6>LogicPro Sol</h6>
+                                <p class="text-muted mb-0">Administrator</p>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" onclick="logout();">Logout</a>
+                    </div>
+                </li>
+                <!-- /User Menu -->
+            </ul>
+            <!-- /Header Right Menu -->
+        </div>
+        <!-- /Header -->            <!-- /Page Header -->
+        <!-- Page Wrapper -->
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="page-title"><center>Doctor</center></h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Page Header -->
+
+                <div class="row">
+                    <div class="col-sm-6 mx-auto">
+                        <div class="card">
+                            <div class="card-body">
+                                <center>
+                                    <img id="imglogo" class="responsive-img" style="min-height:200px;min-width:200px;max-height:250px;max-width:250px;border-radius:250px;" />
+                                </center>
+                                <form class="needs-validation" novalidate method="POST" action="update.php" enctype="multipart/form-data">
+                                    <input type="hidden" name="code" />
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom01">First name</label>
+                                            <input type="text" class="form-control" id="fname" placeholder="First name" required pattern="[a-zA-Z]{3,25}" maxlength="25" name="fname">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom02">Last name</label>
+                                            <input type="text" class="form-control" id="lname" placeholder="Last name" required pattern="[a-zA-Z]{3,25}" maxlength="25" name="lname">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustomUsername">Mobile</label>
+                                            <input type="text" class="form-control" id="mobile" placeholder="10 Digit Mobile No" aria-describedby="inputGroupPrepend" required maxlength="10" minlength="10" pattern="[0-9]{10,10}" name="mobile">
+
+                                        </div>
+
+
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustomUsername">Email</label>
+                                            <input type="email" class="form-control" id="email" placeholder="Email" aria-describedby="inputGroupPrepend" name="email">
+
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <label for="validationCustom03">Address</label>
+                                            <textarea class="form-control" id="validationCustom03" placeholder="Address" rows="3" name="address"></textarea>
+
+                                        </div>
+
+                                        <div class="col-md-12 mb-3">
+                                            <hr />
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom01">Adhaar Card No</label>
+                                            <input type="text" class="form-control" id="AdhaarCardNo" placeholder="Adhaar Card No" maxlength="12" name="AdhaarCardNo">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom01">Pan Card No</label>
+                                            <input type="text" class="form-control" id="PanCardNo" placeholder="Pan Card No" name="PanCardNo">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom01">Degree</label>
+                                            <input type="text" class="form-control" id="DegreeCertificate" placeholder="Degree" name="DegreeCertificate">
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <hr />
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom03">Aadhar Card <span class="res2"><i class="fa fa-check" aria-hidden="true"></i></span> <a class="clsadhaarcard" target="_blank" /><i class="fa fa-eye eye2" aria-hidden="true"></i></a></label>
+                                            <input type="file" class="form-control" id="AadharCard" accept="image/png, image/jpeg,application/pdf">
+                                            <input type="hidden" name="AadharCard" id="res2">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom03">PAN Card <span class="res3"><i class="fa fa-check" aria-hidden="true"></i></span> <a class="clspancard" target="_blank" /><i class="fa fa-eye eye3" aria-hidden="true"></i></a></label>
+                                            <input type="file" class="form-control" id="PANCard" accept="image/png, image/jpeg,application/pdf">
+                                            <input type="hidden" name="PANCard" id="res3">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom03">Certificate <span class="res4"><i class="fa fa-check" aria-hidden="true"></i></span> <a class="clscertificate" target="_blank" /><i class="fa fa-eye eye4" aria-hidden="true"></i></a></label>
+                                            <input type="file" class="form-control" id="Certificate" accept="image/png, image/jpeg,application/pdf">
+                                            <input type="hidden" name="Certificate" id="res4">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom03">License <span class="res5"><i class="fa fa-check" aria-hidden="true"></i></span> <a class="clslicense" target="_blank" /><i class="fa fa-eye eye5" aria-hidden="true"></i></a></label>
+                                            <input type="file" class="form-control" id="License" accept="image/png, image/jpeg,application/pdf">
+                                            <input type="hidden" name="License" id="res5">
+                                        </div>
+
+                                    </div>
+                                    <button class="btn btn-primary" type="button" id="btnVerify">Verify</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+    <!-- /Main Wrapper -->
+    <!-- jQuery -->
+    <script src="~/assets/js/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+
+    <!-- Slimscroll JS -->
+    <script src="~/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Datatables JS -->
+    <script src="~/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/plugins/datatables/datatables.min.js"></script>
+    <script src="https://fengyuanchen.github.io/datepicker/js/datepicker.js"></script>
+    <!-- Custom JS -->
+    <script src="~/assets/js/script.js"></script>
+    <script>
+        function logout() {
+
+        window.location.href = "@Url.Action("logout", "Admin")";
+
+    }
+    </script>
+    <script>
+        var cpid=Math.floor(1000 + Math.random() * 9000);
+        $(document).ready(function () {
+            $(".res1,.res2,.res3,.res4,.res5,.res6").hide();
+            $.ajax({
+                url: "@Url.Action("GetDoctorByid", "Admin")",
+                type: "POST",
+                data: { DocId:@ViewData["docid"] },
+                dataType: "json",
+                success: function (data) {
+
+                    var jdata=JSON.parse(data);
+
+                    $.each(jdata, function (i, v1) {
+                        $("#fname").val(jdata[0].FirstName);
+                        $("#lname").val(jdata[0].LastName);
+                        $("#mobile").val(jdata[0].Phone);
+                        $("#email").val(jdata[0].EmailId);
+
+                        $("#AdhaarCardNo").val(jdata[0].AdharCardNo);
+                        $("#PanCardNo").val(jdata[0].PanCardNo);
+                        $("#DegreeCertificate").val(jdata[0].Degree);
+                        if(jdata[0].Photo == null){
+                            $("#imglogo").attr("src", "http://dash.logicprosol.com/cdn/default.jpg");
+                        }
+                        else{
+                            $("#imglogo").attr("src", "http://app.doctor8.in/Uploaddata/Images/"+jdata[0].Photo+"");
+                        }
+                        $("#validationCustom03").val(jdata[0].Address);
+                        $(".clsadhaarcard").attr("href", "http://app.doctor8.in/Uploaddata/Images/"+jdata[0].AdharCard+"");
+                        $(".clspancard").attr("href", "http://app.doctor8.in/Uploaddata/Images/"+jdata[0].PanCard+"");
+                        $(".clscertificate").attr("href", "http://app.doctor8.in/Uploaddata/Images/"+jdata[0].Certificate+"");
+                        $(".clslicense").attr("href", "http://app.doctor8.in/Uploaddata/Images/"+jdata[0].Licen+"");
+                    })
+                }
+            })
+
+            $("#btnVerify").on('click',function(){
+                $.ajax({
+                    url: "@Url.Action("UpdateDoctorForVerification", "Admin")",
+                    dataType: "json",
+                    data: { DocId:@ViewData["docid"] },
+                    success: function (data) {
+                        if(data > 0){
+                            alert("Record Verified Successfully");
+                            window.location.href='@Url.Action("Doctor","Admin")';
+                        }
+                        else{
+                            alert("Record Not Verified");
+                        }
+
+                    }
+                })
+            })
+
+        })
+
+    </script>
+
+</body>
+</html>
